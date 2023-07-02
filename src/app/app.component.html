@@ -1,25 +1,28 @@
-<h1>{{ title }}</h1>
+<h1 class="text-white animated jackInTheBox">{{ title }}</h1>
 
-<form [formGroup]="todoForm" (submit)="addTask()">
-  <fieldset>
-    <label>Nome Tarefa</label>
-    <input
-      type="text"
-      minlength="3"
-      maxlength="20"
-      placeholder="Título da tarefa"
-      formControlName="title"
-    />
-    <button [ngClass]="todoForm.invalid ? 'disabled': ''" [disabled]="todoForm.invalid">Salvar</button>
+<div id="modal" *ngIf="mode==='add'" class="animated flipInX">
+  <form [formGroup]="todoForm" (submit)="addTask()">
+      <label>Nome Tarefa</label>
+      <input
+        type="text"
+        minlength="3"
+        maxlength="60"
+        placeholder="Título da tarefa"
+        formControlName="title"
+      />
+      <button
+        [ngClass]="todoForm.invalid ? 'disabled': ''" [disabled]="todoForm.invalid"
+      >
+        <i class="fa fa-save" aria-hidden="true"></i> Salvar</button>
 
-    <small
-      class="message danger"
-      *ngIf="todoForm.controls['title'].invalid && todoForm.controls['title'].dirty"
-    >Este campo de conter entre 3 e 20 carecteres</small>
-  </fieldset>
-</form>
+      <small
+        class="message danger"
+        *ngIf="todoForm.controls['title'].invalid && todoForm.controls['title'].dirty"
+      >Este campo de conter entre 3 e 60 carecteres</small>
+  </form>
+</div>
 
-<ul>
+<ul class="animated flipInX" *ngIf="mode==='list'">
   <h3 *ngIf="todos.length === 0"><small>Não tem nenhuma tarefa hoje!</small></h3>
   <li *ngFor="let todo of todos">
     {{ todo.id }} - {{ todo.name }}
@@ -27,16 +30,34 @@
     <div>
       <button
         *ngIf="!todo.done"
-        (click)="markAsDone(todo)
-      ">Conluir</button>
+        (click)="markAsDone(todo)"
+        title="Concluir"
+      ><i class="fa fa-check-circle" aria-hidden="true"></i> </button>
       <button
         *ngIf="todo.done"
-        (click)="markAsUnDone(todo)
-      ">Refazer</button> |
+        (click)="markAsUnDone(todo)"
+        title="Refazer"
+      ><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> </button> |
       <button
         class="remove"
-        (click)="remove(todo)
-      ">Remover</button>
+        (click)="remove(todo)"
+        title="Exluir"
+      ><i class="fa fa-trash" aria-hidden="true"></i> </button>
     </div>
   </li>
 </ul>
+
+
+<button
+  class="animated fadeInUp" *ngIf="mode==='list'"
+  (click)="changeMode('add')"
+>
+  <i class="fa fa-plus-circle" aria-hidden="true"></i>  Nova Tarefa
+</button>
+<button
+  class="animated fadeInUp" *ngIf="mode==='add'"
+  (click)="changeMode('list')"
+>
+  <i class="fa fa-times" aria-hidden="true"></i>
+  Cancelar
+</button>

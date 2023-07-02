@@ -9,6 +9,7 @@ import { Todo } from 'src/models/todo.model';
 })
 export class AppComponent implements OnInit{
   public todos: Todo[] = []
+  public mode: string = 'list'
   public title: string = 'Minhas Tarefas'
   public todoForm!: FormGroup
 
@@ -18,7 +19,7 @@ export class AppComponent implements OnInit{
     this.todoForm = this.fBuilder.group({
       title: ['', Validators.compose([
         Validators.minLength(3),
-        Validators.maxLength(20),
+        Validators.maxLength(60),
         Validators.required
       ])]
     })
@@ -42,6 +43,7 @@ export class AppComponent implements OnInit{
 
     this.addTodoLoacalStorage()
     this.clearForm()
+    this.mode = 'list'
   }
 
   markAsDone(todo: Todo) {
@@ -66,5 +68,9 @@ export class AppComponent implements OnInit{
 
   addTodoLoacalStorage() {
     localStorage.setItem('Todos', JSON.stringify(this.todos))
+  }
+
+  changeMode(mode: string) {
+    this.mode = mode
   }
 }

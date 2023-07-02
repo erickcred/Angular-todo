@@ -1,58 +1,86 @@
-fieldset, ul {
+.text-white {
+  color: #fff;
+}
+
+#modal {
+  background-color: #fff;
   border-radius: 4px;
   padding: 10px;
+  margin: 10px 0;
+
+  label {
+    display: block;
+  }
+
+  input {
+    margin: 10px 6px 10px 0;
+  }
+
+  .message, input {
+    border-radius: 4px;
+    border: 1px solid gray;
+    padding: 4px 10px;
+  }
+
+  .message {
+    background-color: rgba(125, 155, 125, 0.5);
+    border: none;
+    color: rgb(2, 41, 2);
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 1.3px;
+
+    &.warning {
+      background-color: rgba(158, 83, 33, 0.5);
+      color: rgb(122, 56, 18);
+    }
+    &.danger {
+      background-color: rgba(168, 46, 67, 0.5);
+      color: rgb(29, 0, 0);
+    }
+  }
 }
 
 ul {
-  flex-direction: column;
   background-color: #fff;
+  border-radius: 4px;
   margin: 10px 0;
-  padding-top: 15px;
+  padding: 10px;
 
   li {
     display: flex;
+    gap: 16px;
     justify-content: space-between;
     list-style: none;
     margin-bottom: 8px;
   }
 }
 
-input, button, .message {
+
+
+
+button {
   border-radius: 4px;
   border: 1px solid gray;
   padding: 4px 10px;
 }
 
 button {
-  background-color: rgb(73, 170, 73);
+  background-color: rgb(55, 128, 55);
   border: none;
   color: #fff;
   cursor: pointer;
 
   &.remove {
-    background-color: rgb(160, 44, 63)
+    background-color: rgb(133, 37, 53)
   }
+
   &.disabled {
     opacity: .6;
     cursor: no-drop
   }
 }
 
-.message {
-  background-color: rgba(125, 155, 125, 0.856);
-  border: none;
-  color: rgb(1, 43, 1);
-  display: block;
-  font-size: 12px;
-  font-weight: 700;
-  text-align: center;
 
-  &.warning {
-    background-color: rgba(158, 83, 33, 0.4);
-    color: rgb(122, 56, 18);
-  }
-  &.danger {
-    background-color: rgba(153, 67, 81, 0.856);
-    color: rgb(77, 0, 0);
-  }
-}
