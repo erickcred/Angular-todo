@@ -1,0 +1,17 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #3023ae;
+  background: linear-gradient(60deg, #3023ae 0%, #c86dd7 100%);
+
+  display: flex;
+  font-family: 'Montserrat', sans-serif;
+  align-items: center;
+  justify-content: center;
+
+  height: 100vh;
+}

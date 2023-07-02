@@ -1,0 +1,42 @@
+<h1>{{ title }}</h1>
+
+<form [formGroup]="todoForm" (submit)="addTask()">
+  <fieldset>
+    <label>Nome Tarefa</label>
+    <input
+      type="text"
+      minlength="3"
+      maxlength="20"
+      placeholder="Título da tarefa"
+      formControlName="title"
+    />
+    <button [ngClass]="todoForm.invalid ? 'disabled': ''" [disabled]="todoForm.invalid">Salvar</button>
+
+    <small
+      class="message danger"
+      *ngIf="todoForm.controls['title'].invalid && todoForm.controls['title'].dirty"
+    >Este campo de conter entre 3 e 20 carecteres</small>
+  </fieldset>
+</form>
+
+<ul>
+  <h3 *ngIf="todos.length === 0"><small>Não tem nenhuma tarefa hoje!</small></h3>
+  <li *ngFor="let todo of todos">
+    {{ todo.id }} - {{ todo.name }}
+
+    <div>
+      <button
+        *ngIf="!todo.done"
+        (click)="markAsDone(todo)
+      ">Conluir</button>
+      <button
+        *ngIf="todo.done"
+        (click)="markAsUnDone(todo)
+      ">Refazer</button> |
+      <button
+        class="remove"
+        (click)="remove(todo)
+      ">Remover</button>
+    </div>
+  </li>
+</ul>
